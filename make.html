@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <style>
+            @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+            *{
+
+                font-family: 'Hanna', serif;
+
+            }
+            img{
+                width : 50px;
+                height : 50px;
+            }
+            table{
+                border : 1px solid black;
+                margin-left : 20px;
+                margin-right: 30px;
+            }
+            button{
+                background-color : #395687;
+                font-size : 30px;
+                border-radius : 10px;
+                width : 200px;
+                height:50px;
+                border : 0;
+                color : #F1F1F1;
+                display : block;
+                margin-bottom : 10px;
+            }
+            .pallette{
+                float : left;
+            }
+
+            #flower{
+                float : left;
+                margin-left: 0;
+                padding-left: 0;
+                top: 0;
+                left: 0;
+            }
+            #tree{
+                float : left;
+                top: 0;
+                left: 0;
+            }
+            #cloud{
+                float : left;
+                top: 0;
+                left: 0;
+            }
+            #fish{
+                float : left;
+                top: 0;
+                left: 0;
+            }
+            #etc{
+                float : left;
+                top: 0;
+                left: 0;
+            }
+            canvas{
+                float : left;
+            }
+            body{
+                overflow : hidden;
+                padding-top : 20px;
+            }
+            #flower td{
+                height : 100px;
+                width : 100px;
+            }
+            #flower img{
+                height : 100px;
+                width : 100px;
+            }
+            #tree td{
+                height : 100px;
+                width : 100px;
+            }
+            #tree img{
+                height : 100px;
+                width : 100px;
+            }
+            #cloud td{
+                height : 100px;
+                width : 100px;
+            }
+            #cloud img{
+                height : 100px;
+                width : 100px;
+            }
+            #fish td{
+                height : 100px;
+                width : 100px;
+            }
+            #fish img{
+                height : 100px;
+                width : 100px;
+            }
+            #etc td{
+                height : 100px;
+                width : 100px;
+            }
+            #etc img{
+                height : 100px;
+                width : 100px;
+            }
+            #selectback{
+                margin-left : 20px;
+                float : left;
+            }
+            #selectback td{
+                width : 230px;
+                height : 200px;
+            }
+            #selectback img{
+                width : 230px;
+                height : 200px;
+            }
+        </style>
+    </head>
+    <body onload="webglmain()" style = "background-color : #E8C720; padding-bottom: 0;">
+
+
+        <div id ="content" style = "overflow : hidden; background-color : #427590; width : 1800px; height : 900px; padding-top : 50px; padding-bottom : 40px; border-radius : 100px; margin-left: 3%; margin-top:20px;">
+            <div class="pallette" style="margin-left : 100px; ">
+                <div style="width:300px; float: left;">
+                    <table  style="border: 1px dotted black; float:left; margin-right: 0; padding-right: 0; margin-left: 0; padding-left: 0;">
+                        <tr onclick="flowerShow()">
+                            <td style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>꽃</td>
+                        </tr>
+                        <tr onclick="treeShow()">
+                            <td style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>나<br/>무</td>
+                        </tr>
+                        <tr onclick="cloudShow()">
+                            <td  style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>구<br/>름</td>
+                        </tr>
+                        <tr onclick="fishShow()">
+                            <td style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>물<br/>고<br/>기</td>
+                        </tr>
+                        <tr onclick="etcShow()">
+                            <td style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>기<br/>타</td>
+                        </tr>
+                    </table>
+                    <img src="back.png" style="width:100px; height: 100px; float: right; margin-right: 7%; position:fixed; top : 900px; right : 20px;;" onclick="history.back();">
+
+                    <div  id="flower">
+                        <table border="0" style="float:left; margin-left: 0;padding-left: 0;">
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower0.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower1.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower2.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower3.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower4.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower5.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower6.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower7.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower8.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower9.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower10.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower11.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower12.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower13.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="flower14.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="flower15.png"></td>
+                            </tr>
+                        </table>     
+                    </div>
+
+                    <div  id="tree">
+                        <table border="0" style="float:left; margin-left: 0;padding-left: 0;">
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree0.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree1.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree2.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree3.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree4.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree5.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree6.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree7.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree8.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree9.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree10.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree11.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree12.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree13.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="tree14.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="tree15.png"></td>
+                            </tr>
+                        </table>     
+                    </div>
+                    <div  id="cloud">
+                        <table border="0" style="float:left; margin-left: 0;padding-left: 0;">
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="cloud0.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="cloud1.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="cloud2.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="cloud3.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="cloud4.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="cloud5.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="cloud6.png"></td>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                            </tr>
+                        </table>     
+                    </div>
+                    <div  id="fish">
+                        <table border="0" style="float:left; margin-left: 0;padding-left: 0;">
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish0.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish1.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish2.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish3.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish4.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish5.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish6.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish7.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish8.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish9.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish10.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish11.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish12.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish13.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="fish14.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="fish15.png"></td>
+                            </tr>
+                        </table>     
+                    </div>
+
+                    <div  id="etc">
+                        <table border="0" style="float:left; margin-left: 0;padding-left: 0;">
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc0.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc1.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc2.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc3.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc4.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc5.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc6.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc7.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc8.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc9.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc10.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc11.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" src="etc12.png"></td>
+                                <td><img onclick = "sticker(this.src)" src="etc13.png"></td>
+                            </tr>
+                            <tr>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                                <td><img onclick = "sticker(this.src)" ></td>
+                            </tr>
+                        </table>     
+                    </div>
+
+                </div>
+                <canvas id="myCanvas" width=1050 height=865  style='border: 1px dotted black; float:left; margin-right: 20px;' onclick="appendSticker();"></canvas> 
+                <button onclick="clearDraw();">초기화</button>
+                <button onclick="expansion();">확대</button>
+                <button onclick="reduction();">축소</button>
+                <button onclick="remove();">지우기</button>
+
+                &nbsp;&nbsp;
+                <table border="0">
+                    <tr>
+                        <td><img style = "width : 190px; height : 100px;" onclick = "chageBack(1)" src="hill.png"></td>
+                    </tr>
+                    <tr>
+                        <td><img style = "width : 190px; height : 100px;" onclick = "chageBack(2)" src="sea.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img style = "width : 190px; height : 100px;" onclick = "chageBack(3)" src="fall.png"></td>
+                    </tr>
+                    <tr>
+                        <td><img style = "width : 190px; height : 100px;" onclick = "chageBack(4)" src="winter.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img style = "width : 190px; height : 100px;" onclick = "chageBack(5)" src="space.png"></td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+            <script src="webgl-utils.js"></script>
+            <script src="webgl-debug.js"></script>
+            <script src="cuon-utils.js"></script>
+            <script src="cuon-matrix.js"></script>
+            <script>
+                            var VSHADER_SOURCE =
+                                    'attribute vec4 a_Position; \n' +
+                                    'attribute vec4 a_Color; \n' +
+                                    'attribute vec2 a_TexCoord; \n' +
+                                    //  'uniform mat4 trans; \n' +
+                                    'varying vec4 outColor; \n' +
+                                    'varying vec2 v_TexCoord; \n' +
+                                    'void main() { \n' +
+                                    '  gl_Position = a_Position; \n' +
+                                    '  outColor = a_Color; \n' +
+                                    '  v_TexCoord = a_TexCoord; \n' +
+                                    '}\n';
+
+                            var FSHADER_SOURCE =
+                                    'precision mediump float; \n' +
+                                    'uniform sampler2D u_texture; \n' +
+                                    'uniform int mode; \n' +
+                                    'uniform float obj_id; \n' +
+                                    'varying vec4 outColor; \n' +
+                                    'varying vec2 v_TexCoord; \n' +
+                                    'void main() { \n' +
+                                    '  if (mode == 0) { \n' +
+                                    '     gl_FragColor = texture2D(u_texture, v_TexCoord)*outColor; \n' +
+                                    '  } else { \n' +
+                                    '     gl_FragColor = vec4 (obj_id/255.0+0.5, 0, 0, 1.0); \n' +
+                                    '  } \n' +
+                                    '}\n';
+
+                            var vertices = [
+
+                            ];
+                            var Ivertices = [
+                                -0.1, -0.1, 0.1, 1.0, 1.0, 1.0, 0.0, 0.0,
+                                0.1, -0.1, 0.1, 1.0, 1.0, 1.0, 1.0, 0.0,
+                                -0.1, 0.1, 0.1, 1.0, 1.0, 1.0, 0.0, 1.0,
+                                0.1, 0.1, 0.1, 1.0, 1.0, 1.0, 1.0, 1.0
+                            ];
+
+
+                            var indices = [
+                                0, 1, 2, 2, 1, 3
+                            ];
+
+                            var backVertices = [
+                                -1.0, -1.0, 0.11, 1.0, 1.0, 1.0, 0.0, 0.0,
+                                1.0, -1.0, 0.11, 1.0, 1.0, 1.0, 1.0, 0.0,
+                                -1.0, 1.0, 0.11, 1.0, 1.0, 1.0, 0.0, 1.0,
+                                1.0, 1.0, 0.11, 1.0, 1.0, 1.0, 1.0, 1.0
+                            ];
+                            var backIndices = [
+                                0, 1, 2, 2, 1, 3
+                            ];
+                            var cubeVBO;
+                            var cubeVEO;
+                            var gl;
+                            var cv;
+                            var cImage;
+                            var historyXY = [];
+                            var texImage = [];
+                            var texID = []; // 텍스처를 담는다.
+                            var i = 0;
+                            var rectNum = 1;// 현재까지 그려준 사각형의 개수
+                            var zPoint = 0.001;
+                            var posLoc;
+                            var colLoc;
+                            var texLoc;
+                            var modeLoc;
+                            var objIDLoc;
+                            var doClickSticker = true;
+                            var pickObjNum; // 픽킹된 오브젝트 번호 
+
+
+                            function webglmain() {
+                                cv = document.getElementById('myCanvas');
+                                //gl = cv.getContext('webgl');
+                                gl = cv.getContext('experimental-webgl', {preserveDrawingBuffer: true});
+
+
+
+                                initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE);
+
+                                // gl.clearColor(1.0, 0.0, 1.0, 1.0);
+                                gl.enable(gl.DEPTH_TEST);
+                                appendSticker();
+                            }
+
+
+                            function init(gl) {
+
+                                cubeVBO = gl.createBuffer();
+                                cubeVEO = gl.createBuffer();
+                                posLoc = gl.getAttribLocation(gl.program, 'a_Position');
+                                colLoc = gl.getAttribLocation(gl.program, 'a_Color');
+                                texLoc = gl.getAttribLocation(gl.program, 'a_TexCoord');
+
+                                gl.bindBuffer(gl.ARRAY_BUFFER, cubeVBO);
+                                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+                                gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 4 * 8, 0);
+                                gl.vertexAttribPointer(colLoc, 3, gl.FLOAT, false, 4 * 8, 4 * 3);
+                                gl.vertexAttribPointer(texLoc, 2, gl.FLOAT, false, 4 * 8, 4 * 6);
+                                gl.enableVertexAttribArray(posLoc);
+                                gl.enableVertexAttribArray(colLoc);
+                                gl.enableVertexAttribArray(texLoc);
+
+                                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVEO);
+                                gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(indices), gl.STATIC_DRAW);
+                            }
+
+                            function chageBack(BG) {
+                                switch (BG) {
+                                    case 1:
+                                        texImage[0].src = 'hill.png';
+                                        break;
+                                    case 2:
+                                        texImage[0].src = 'sea.jpg';
+                                        break;
+                                    case 3:
+                                        texImage[0].src = 'fall.png';
+                                        break;
+                                    case 4:
+                                        texImage[0].src = 'winter.jpg';
+                                        break;
+                                    case 5:
+                                        texImage[0].src = 'space.png';
+                                        break;
+                                }
+                                init(gl);
+                                draw(gl);
+                            }
+                            function draw(gl) {
+                                //gl.clear();
+                                gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+                                texImage[i] = new Image();
+                                texImage[i].onload = function () { // 이미지가 로드되면 실행된다
+                                    gl.texID = gl.createTexture();
+                                    texID.push(gl.texID);
+                                    for (var j = 0; j < i; j++) {
+                                        gl.activeTexture(gl.TEXTURE0);
+                                        //console.log(texImage[j]);
+                                        gl.bindTexture(gl.TEXTURE_2D, texID[j]);
+
+                                        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+                                        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, texImage[j]);
+
+                                        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+                                        // 그리기 이미지가 로드되야 그린다.
+                                        var samplerLoc = gl.getUniformLocation(gl.program, 'u_texture');
+                                        gl.uniform1i(samplerLoc, 0);
+
+                                        gl.blendFunc(gl.SRC_COLOR, gl.ONE_MINUS_SRC_COLOR);
+                                        gl.enable(gl.BLEND);
+                                        // gl.disable(gl.DEPTH_TEST);
+                                        gl.enable(gl.DEPTH_TEST);
+                                        gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_BYTE, 6 * j);
+
+                                    }
+                                };
+                                if (i == 0)
+                                    texImage[0].src = 'hill.png';
+                                else
+                                    texImage[i].src = cImage;
+                                if (doClickSticker || i == 0) {
+                                    i++;
+                                    rectNum++;
+                                    console.log(i);
+                                    doClickSticker = false;
+                                }
+                            }
+
+                            function sticker(img) {
+                                console.log(img);
+                                cImage = img;
+                                doClickSticker = true;
+                            }
+
+
+                            function appendSticker() {
+                                if (doClickSticker) {
+                                    if (i == 0) {
+                                        for (var j = 0; j < 32; j++) {
+                                            vertices.push(backVertices[j]);
+                                        }
+                                    } else {
+                                        // 클릭한 점의 좌표들을 저장하는 배열
+                                        // 그 배열에 xy좌표 추가
+                                        var rect = event.target.getBoundingClientRect();
+                                        var x = 2.0 * (event.clientX - rect.left) / cv.width - 1.0;
+                                        var y = 1.0 - 2.0 * (event.clientY - rect.top) / cv.height;
+
+                                        Ivertices[0] = -0.1 + x;
+                                        Ivertices[1] = -0.1 + y;
+                                        Ivertices[8] = 0.1 + x;
+                                        Ivertices[9] = -0.1 + y;
+                                        Ivertices[16] = -0.1 + x;
+                                        Ivertices[17] = 0.1 + y;
+                                        Ivertices[24] = 0.1 + x;
+                                        Ivertices[25] = 0.1 + y;
+                                        Ivertices[2] -= zPoint;
+                                        Ivertices[10] -= zPoint;
+                                        Ivertices[18] -= zPoint;
+                                        Ivertices[26] -= zPoint;
+                                        zPoint += 0.001;
+                                        for (var j = 0; j < 32; j++) {
+                                            vertices.push(Ivertices[j]);
+                                        }
+                                    }
+
+                                    if (rectNum >= 2) {
+                                        indices.push(0 + 4 * (rectNum - 1));
+                                        indices.push(1 + 4 * (rectNum - 1));
+                                        indices.push(2 + 4 * (rectNum - 1));
+                                        indices.push(2 + 4 * (rectNum - 1));
+                                        indices.push(1 + 4 * (rectNum - 1));
+                                        indices.push(3 + 4 * (rectNum - 1));
+                                    }
+                                    console.log(vertices.length);
+                                    console.log(x + " " + y);
+
+                                    init(gl);
+                                    draw(gl);
+                                } else {
+                                    pick(event);
+                                }
+                            }
+                            function clearDraw() {
+                                i = 0;
+                                vertices = [];
+                                doClickSticker = true;
+                                appendSticker();
+                                c//깃발
+                            }
+
+                            function pick(e) {
+                                //modeLoc = gl.getUniformLocation(gl.program, 'mode');
+                                //objIDLoc = gl.getUniformLocation(gl.program, 'obj_id');
+
+
+                                var rect = cv.getBoundingClientRect();
+                                var x = 2 * (e.clientX - rect.left) / rect.width - 1;//e.clientX - rect.left; 
+                                var y = 1 - 2 * (e.clientY - rect.top) / rect.height;//rect.height - (e.clientY - rect.top); 
+
+
+                                //버텍스 배열을 뒤져서 픽킹하기 
+                                for (var j = 1; j < i; j++) {
+                                    if (vertices[32 * (j)] < x && x < vertices[32 * (j) + 24] && vertices[32 * (j) + 1] < y && y < vertices[32 * (j) + 25]) {
+                                        console.log(j);
+                                        pickObjNum = j;
+                                    }
+                                }
+                                //                var readResult = new Uint8Array(4);
+                                //                gl.uniform1i(modeLoc, 1);
+                                //                draw(gl);//오브젝트에 아이디 부여
+                                //
+                                //                gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, readResult);
+                                //
+                                //                console.log("readPixels 좌표" + x + " " + y);
+                                //                console.log("readReuslit 값 : " + readResult);
+                                //
+                                //                if (readResult[0] !== 0) {
+                                //                    selectedObj = readResult[0];
+                                //                    console.log("selectObj의 값 : " + selectedObj);
+                                //                }
+                                //
+                                //                gl.uniform1i(modeLoc, 0);
+                                //                draw(gl);
+                            }
+
+                            //확대
+                            function expansion() {
+                                if (vertices[32 * (pickObjNum) + 8 * 3] - vertices[32 * (pickObjNum)] < 1.0) {
+                                    vertices[32 * (pickObjNum) ] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 1] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 8] += 0.03;
+                                    vertices[32 * (pickObjNum) + 1 + 8 ] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 8 * 2] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 1 + 8 * 2 ] += 0.03;
+                                    vertices[32 * (pickObjNum) + 8 * 3] += 0.03;
+                                    vertices[32 * (pickObjNum) + 1 + 8 * 3 ] += 0.03;
+                                    init(gl);
+                                    draw(gl);
+
+                                }
+                            }
+
+                            //축소
+                            function reduction() {
+                                if (vertices[32 * (pickObjNum) + 8 * 3] - vertices[32 * (pickObjNum)] > 0.06) {
+                                    vertices[32 * (pickObjNum) ] += 0.03;
+                                    vertices[32 * (pickObjNum) + 1] += 0.03;
+                                    vertices[32 * (pickObjNum) + 8] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 1 + 8 ] += 0.03;
+                                    vertices[32 * (pickObjNum) + 8 * 2] += 0.03;
+                                    vertices[32 * (pickObjNum) + 1 + 8 * 2 ] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 8 * 3] -= 0.03;
+                                    vertices[32 * (pickObjNum) + 1 + 8 * 3 ] -= 0.03;
+                                    init(gl);
+                                    draw(gl);
+                                }
+
+                            }
+
+                            //선택한 오브젝트 지우기
+                            function remove() {
+                                vertices[32 * (pickObjNum) ] = -1.0;
+                                vertices[32 * (pickObjNum) + 1] = -1.0;
+                                vertices[32 * (pickObjNum) + 8] = -1.0;
+                                vertices[32 * (pickObjNum) + 1 + 8 ] = -1.0;
+                                vertices[32 * (pickObjNum) + 8 * 2] = -1.0;
+                                vertices[32 * (pickObjNum) + 1 + 8 * 2 ] = -1.0;
+                                vertices[32 * (pickObjNum) + 8 * 3] = -1.0;
+                                vertices[32 * (pickObjNum) + 1 + 8 * 3 ] = -1.0;
+                                init(gl);
+                                draw(gl);
+                            }
+
+            </script>
+            <script>
+
+                var flower = document.getElementById("flower").innerHTML;
+                var tree = document.getElementById("tree").innerHTML;
+                var cloud = document.getElementById('cloud').innerHTML;
+                var fish = document.getElementById("fish").innerHTML;
+                var etc = document.getElementById("etc").innerHTML;
+
+                document.getElementById("flower").innerHTML = flower;
+                document.getElementById("tree").innerHTML = "";
+                document.getElementById("cloud").innerHTML = "";
+                document.getElementById("fish").innerHTML = "";
+                document.getElementById("etc").innerHTML = "";
+
+
+
+                function flowerShow() {
+                    document.getElementById("flower").innerHTML = flower;
+                    document.getElementById("tree").innerHTML = "";
+                    document.getElementById("cloud").innerHTML = "";
+                    document.getElementById("fish").innerHTML = "";
+                    document.getElementById("etc").innerHTML = "";
+
+                }
+
+                function treeShow() {
+                    document.getElementById("flower").innerHTML = "";
+                    document.getElementById("tree").innerHTML = tree;
+                    document.getElementById("cloud").innerHTML = "";
+                    document.getElementById("fish").innerHTML = "";
+                    document.getElementById("etc").innerHTML = "";
+
+                }
+
+
+                function cloudShow() {
+                    document.getElementById("flower").innerHTML = "";
+                    document.getElementById("tree").innerHTML = "";
+                    document.getElementById("cloud").innerHTML = cloud;
+                    document.getElementById("fish").innerHTML = "";
+                    document.getElementById("etc").innerHTML = "";
+
+                }
+                function fishShow() {
+                    document.getElementById("flower").innerHTML = "";
+                    document.getElementById("tree").innerHTML = "";
+                    document.getElementById("cloud").innerHTML = "";
+                    document.getElementById("fish").innerHTML = fish;
+                    document.getElementById("etc").innerHTML = "";
+
+                }
+
+                function etcShow() {
+                    document.getElementById("flower").innerHTML = "";
+                    document.getElementById("tree").innerHTML = "";
+                    document.getElementById("cloud").innerHTML = "";
+                    document.getElementById("fish").innerHTML = "";
+                    document.getElementById("etc").innerHTML = etc;
+
+                }
+            </script>
+
+    </body>
+
+
+</html>

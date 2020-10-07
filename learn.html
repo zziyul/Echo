@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <meta name="viewport" content="width=device-width">
+        <style>
+            @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+            *{
+                margin : 0;
+                padding : 0;
+                font-family: 'Hanna', serif;
+
+            }
+            canvas{
+                margin-left : 50px;
+            }
+            #content{
+                overflow : hidden;
+                margin-top: 100px;
+                margin-left: 200px;
+            }
+            #hanguel td{
+                font-size : 60px;
+                padding : 5px;
+                text-align: center;
+            }
+            #word td{
+                font-size : 45px;
+                padding-top : 20px;
+                padding-left: 10px;
+                padding-right : 10px;
+
+            }
+            #hanguel{
+                overflow : hidden;
+                float : left;
+            }
+            table{
+                background-color:white; 
+            }
+            .user{
+
+            }
+            #consonant, #vowel, #word{
+                float : left;
+                border : 1px solid black;
+            }
+
+
+        </style>
+        <script src ="cuon-matrix.js"></script>
+        <script src ="cuon-utils.js"></script>
+        <script src ="webgl-debug.js"></script>
+        <script src ="webgl-utils.js"></script>
+
+        <title></title>
+        <meta name="description" content="WebRTC에 대한 정보 공유">
+        <meta name="author" content="codeJS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery.js"></script>
+        <script src="DetectRTC.js"></script>
+    </head>
+    <body onload = "webglmain()" style = "background-color : #E8C720; padding-bottom: 0;">
+
+        <!--<audio controls src = "consonant/1.mp3" id = one style = "display : block;" ></audio>-->
+        <img src="back.png" style="width:100px; height: 100px; float: right; margin-right: 7%; position:fixed; top : 900px; right : 20px;;" onclick="history.back();">
+
+        <div id ="content" style = "overflow : hidden; background-color : #427590; width : 1800px; height : 900px; padding-top : 80px; padding-bottom : 10px; border-radius : 100px; margin-left: 3%; margin-top:50px;">
+            <div class="pallette" style="margin-left : 100px; ">
+                <div id ='hanguel'>
+                    <table  style="border: 1px dotted black; float:left; margin-right: 0; padding-right: 0; margin-left: 0; padding-left: 0;">
+                        <tr onclick="consonantShow()">
+                            <td style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>자<br/>음</td>
+                        </tr>
+                        <tr onclick="vowelShow()">
+                            <td style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>모<br/>음</td>
+                        </tr>
+                        <tr onclick="wordShow()">
+                            <td  style='background-color : #F1F1F1;font-size : 30px; padding : 10px; border-radius : 10px 0 0 10px; height : 70px;font-weight: bold;'>단<br/>어</td>
+                        </tr>
+                    </table>
+                    <div id = 'consonant'>
+                        <table style='width:168px;'>
+                            <tr>
+                                <td onclick = 'playConsonant(1); showText(this.innerHTML);'>ㄱ</td>
+                                <td onclick = 'playConsonant(2); showText(this.innerHTML);'>ㄲ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(3); showText(this.innerHTML);'>ㄴ</td>
+                                <td onclick = 'playConsonant(4); showText(this.innerHTML);'>ㄷ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(5); showText(this.innerHTML);'>ㄸ</td>
+                                <td onclick = 'playConsonant(6); showText(this.innerHTML);'>ㄹ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(7); showText(this.innerHTML);'>ㅁ</td>
+                                <td onclick = 'playConsonant(8); showText(this.innerHTML);'>ㅂ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(9); showText(this.innerHTML);'>ㅃ</td>
+                                <td onclick = 'playConsonant(10); showText(this.innerHTML);'>ㅅ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(11); showText(this.innerHTML);'>ㅆ</td>
+                                <td onclick = 'playConsonant(12); showText(this.innerHTML);'>ㅇ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(13); showText(this.innerHTML);'>ㅈ</td>
+                                <td onclick = 'playConsonant(14); showText(this.innerHTML);'>ㅉ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(15); showText(this.innerHTML);'>ㅊ</td>
+                                <td onclick = 'playConsonant(16); showText(this.innerHTML);'>ㅋ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(17); showText(this.innerHTML);'>ㅌ</td>
+                                <td onclick = 'playConsonant(18); showText(this.innerHTML);'>ㅍ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playConsonant(19); showText(this.innerHTML);'>ㅎ</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>　</td>
+                                <td>　</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id = vowel>
+                        <table style='width:168px;'>
+                            <tr>
+                                <td onclick = 'playVowel(1); showText(this.innerHTML);'>ㅏ</td>
+                                <td onclick = 'playVowel(2); showText(this.innerHTML);'>ㅐ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(3); showText(this.innerHTML);'>ㅑ</td>
+                                <td onclick = 'playVowel(4); showText(this.innerHTML);'>ㅒ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(5); showText(this.innerHTML);'>ㅓ</td>
+                                <td onclick = 'playVowel(6); showText(this.innerHTML);'>ㅔ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(7); showText(this.innerHTML);'>ㅕ</td>
+                                <td onclick = 'playVowel(8); showText(this.innerHTML);'>ㅖ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(9); showText(this.innerHTML);'>ㅗ</td>
+                                <td onclick = 'playVowel(10); showText(this.innerHTML);'>ㅘ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(11); showText(this.innerHTML);'>ㅙ</td>
+                                <td onclick = 'playVowel(12); showText(this.innerHTML);'>ㅚ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(13); showText(this.innerHTML);'>ㅛ</td>
+                                <td onclick = 'playVowel(14); showText(this.innerHTML);'>ㅜ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(15); showText(this.innerHTML);'>ㅝ</td>
+                                <td onclick = 'playVowel(16); showText(this.innerHTML);'>ㅞ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(17); showText(this.innerHTML);'>ㅟ</td>
+                                <td onclick = 'playVowel(18); showText(this.innerHTML);'>ㅠ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(19); showText(this.innerHTML);'>ㅡ</td>
+                                <td onclick = 'playVowel(20); showText(this.innerHTML);'>ㅢ</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playVowel(21); showText(this.innerHTML);'>ㅣ</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div  id = word>
+                        <table>
+                            <tr>
+                                <td onclick = 'playWord(1); showText(this.innerHTML);'>나비</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(2); showText(this.innerHTML);'>꽃</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(3); showText(this.innerHTML);'>바람</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(4); showText(this.innerHTML);'>호랑나비</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(5); showText(this.innerHTML);'>흰나비</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(6); showText(this.innerHTML);'>참새</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(7); showText(this.innerHTML);'>상어</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(8); showText(this.innerHTML);'>엄마</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(9); showText(this.innerHTML);'>아빠</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(10); showText(this.innerHTML);'>할아버지</td>
+                            </tr>
+                            <tr>
+                                <td onclick = 'playWord(11); showText(this.innerHTML);'>할머니</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div style = "padding-top : 70px; margin-bottom : 80px;">
+                    <p id='text' style='padding-top : 30px; text-align: center; float:left; margin-left: 50px; width:400px; height: 220px; border: 1px solid black; font-size: 100px; line-height: 220px;'>
+
+                    </p>
+                    <canvas class='standard' width ='800' height = '250' style='border: 1px solid black;'></canvas>
+                </div>
+                <div>
+                    <div class="wrap" style='float:left; '>
+                        <div id="result" style=' margin-left: 50px;  width:400px; height: 200px; line-height : 180px; border: 1px solid black; font-size: 100px; text-align: center; line-height: 220px;'>
+                            <span class="final" id="final_span"></span>
+                            <span class="interim" id="interim_span"></span>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button id="btn-mic" class="off" style=' margin-left: 50px;  width:200px; height: 50px; border: 0; font-size: 40px; border-radius: 20px; margin-top : 10px; background-color : #395687;'>마이크 <span></span></button>
+                    </div>
+                    <canvas class="user" width="800" height="250" ></canvas>
+                </div>
+            </div>
+        </div>
+        <script>
+            navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+            var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            var ctx = new AudioContext();//첫번쨰 위해서 만들어주었다.
+            var audio;
+            var source;
+            var source1;
+            var stream1;
+            var stream;
+            var analyser = audioCtx.createAnalyser();
+            var analyser1 = ctx.createAnalyser();
+            var audioSrc; // 오디오 소스
+            var canvas1 = document.querySelector(".standard");
+            var canvasCtx1 = canvas1.getContext("2d");
+            canvasCtx1.fillStyle = 'rgb(0, 0, 0)';
+            canvasCtx1.fillRect(0, 0, canvas1.width, canvas1.height);
+            var canvas = document.querySelector('.user');
+            var canvasCtx = canvas.getContext("2d");
+            var drawVisual;
+            var drawVisual1;
+            var mode = 0;
+
+            var aleadyCreat = false;
+
+            function webglmain() {
+                init1();
+                init2();
+            }
+            function init1() {
+                if (mode == 1) {
+                    audioSrc = ctx.createMediaElementSource(audio);
+                    audioSrc.connect(ctx.destination);
+                    audioSrc.connect(analyser1);
+                    visualize1(audio);
+                }
+            }
+            function visualize1(audio) {
+                console.log("visual1");
+
+                WIDTH = canvas1.width;
+                HEIGHT = canvas1.height;
+                analyser1.fftSize = 256;
+                var bufferLength = analyser1.frequencyBinCount;
+                var dataArray = new Uint8Array(bufferLength);
+                canvasCtx1.clearRect(0, 0, WIDTH, HEIGHT);
+
+                function draw1() {
+                    drawVisual1 = requestAnimationFrame(draw1);
+                    analyser1.getByteFrequencyData(dataArray);
+                    canvasCtx1.fillStyle = 'rgb(0, 0, 0)';
+                    canvasCtx1.fillRect(0, 0, WIDTH, HEIGHT);
+                    var barWidth = (WIDTH / bufferLength) * 5.0;
+                    var barHeight;
+                    var x = 0;
+                    for (var i = 0; i < bufferLength; i++) {
+                        barHeight = dataArray[i];
+                        console.log(dataArray[i]);
+                        canvasCtx1.fillStyle = 'rgb(' + (barHeight + 50) + ',' + (barHeight + 30) + ',' + (barHeight + 100) + ')';
+                        canvasCtx1.fillRect(x, HEIGHT - barHeight / 1.25, barWidth, barHeight);
+                        x += barWidth + 2;
+                    }
+                }
+                ;
+                draw1();
+            }
+            function init2() {
+                if (navigator.getUserMedia) {
+                    console.log('getUserMedia supported.');
+                    navigator.getUserMedia(
+                            {
+                                audio: true
+                            },
+                            function (stream) {
+                                source = audioCtx.createMediaStreamSource(stream);
+                                source.connect(analyser);
+                                visualize2(stream);
+                            },
+                            function (err) {
+                                console.log('The following gUM error occured: ' + err);
+                            }
+                    );
+                } else {
+                    console.log('getUserMedia not supported on your browser!');
+                }
+            }
+            function visualize2(stream) {
+                WIDTH = canvas.width;
+                HEIGHT = canvas.height;
+                analyser.fftSize = 256;
+                var bufferLength = analyser.frequencyBinCount;
+                var dataArray = new Uint8Array(bufferLength);
+                canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+
+
+                function draw2() {
+                    drawVisual = requestAnimationFrame(draw2);
+                    analyser.getByteFrequencyData(dataArray);
+                    canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+                    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+                    var barWidth = (WIDTH / bufferLength) * 5.0;
+                    var barHeight;
+                    var x = 0;
+                    for (var i = 0; i < bufferLength; i++) {
+                        barHeight = dataArray[i];
+                        canvasCtx.fillStyle = 'rgb(' + (barHeight + 50) + ',' + (barHeight + 30) + ',' + (barHeight + 100) + ')';
+                        canvasCtx.fillRect(x, HEIGHT - barHeight / 1.25, barWidth, barHeight);
+                        x += barWidth + 2;
+                    }
+                }
+                ;
+                draw2();
+            }
+            function playConsonant(num) {
+                audio = new Audio('consonant/' + num + '.mp3');
+                audio.play();
+                mode = 1;
+                init1();
+            }
+            function playVowel(num) {
+                audio = new Audio('vowel/' + num + '.mp3');
+                audio.play();
+                mode = 1;
+                init1();
+            }
+            function playWord(num) {
+                audio = new Audio('word/' + num + '.mp3');
+                audio.play();
+                mode = 1;
+                init1();
+            }
+        </script>     
+
+        <script src="main.js"></script>
+        <script>
+            var consonant = document.getElementById("consonant").innerHTML;
+            var vowel = document.getElementById("vowel").innerHTML;
+            var word = document.getElementById('word').innerHTML;
+
+            document.getElementById("consonant").innerHTML = consonant;
+            document.getElementById("vowel").innerHTML = "";
+            document.getElementById("word").innerHTML = "";
+
+
+
+            function consonantShow() {
+                document.getElementById("consonant").innerHTML = consonant;
+                document.getElementById("vowel").innerHTML = "";
+                document.getElementById("word").innerHTML = "";
+
+            }
+
+            function vowelShow() {
+                document.getElementById("consonant").innerHTML = "";
+                document.getElementById("vowel").innerHTML = vowel;
+                document.getElementById("word").innerHTML = "";
+
+            }
+
+
+            function wordShow() {
+                document.getElementById("consonant").innerHTML = "";
+                document.getElementById("vowel").innerHTML = "";
+                document.getElementById("word").innerHTML = word;
+
+            }
+            function showText(inner) {
+                document.getElementById('text').innerHTML = inner;
+            }
+        </script>
+    </body>
+</html>
